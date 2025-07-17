@@ -1,0 +1,27 @@
+.aboutContainer {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 40px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(60,60,120,0.13);
+  animation: fadeIn 1s;
+}
+
+h1 {
+  color: #6a82fb;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+p {
+  color: #444;
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+} 

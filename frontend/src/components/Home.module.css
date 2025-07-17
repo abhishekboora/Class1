@@ -1,0 +1,22 @@
+.container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 40px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(60,60,120,0.15);
+  animation: fadeIn 1s ease;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #3a3a7c;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+} 
