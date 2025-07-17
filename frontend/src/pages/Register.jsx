@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import styles from "./Register.module.css";
 
 const Register = () => {
@@ -97,10 +97,10 @@ const Register = () => {
       <p>You will receive an OTP via email to complete registration.</p>
       <p>
         Already registered?{' '}
-        <a href="/login">Login here</a>
+        <Link to="/login">Login here</Link>
       </p>
       <p>
-        <a href="/forgot-password">Forgot Password?</a>
+        <Link to="/forgot-password">Forgot Password?</Link>
       </p>
     </div>
   );

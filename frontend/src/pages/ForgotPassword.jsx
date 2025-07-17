@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const ForgotPassword = () => {
@@ -49,7 +50,7 @@ const ForgotPassword = () => {
       </button>
       {message && <p style={{ marginTop: 16 }}>{message}</p>}
       <p style={{ marginTop: 16 }}>
-        <a href="/login">Back to Login</a>
+        <Link to="/login">Back to Login</Link>
       </p>
     </div>
   );
