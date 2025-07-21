@@ -1,36 +1,66 @@
 .contactContainer {
-  max-width: 700px;
+  max-width: 800px;
   margin: 60px auto;
-  padding: 40px;
-  background: #fff;
-  border-radius: 18px;
+  padding: 40px 32px 32px 32px;
+  background: linear-gradient(120deg, #fc5c7d 0%, #6a82fb 100%);
+  border-radius: 22px;
   box-shadow: 0 8px 32px rgba(60,60,120,0.13);
-  animation: fadeIn 1s;
+  animation: fadeInContact 1s;
 }
 
-h1 {
-  color: #3a3a7c;
-  font-size: 2.2rem;
-  font-weight: 700;
+.title {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 800;
   margin-bottom: 18px;
+  letter-spacing: 1px;
+  text-align: center;
+  text-shadow: 1px 2px 8px #3a3a7c44;
 }
 
-p, a {
-  color: #444;
-  font-size: 1.15rem;
+.cardAnimated {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 24px;
+  box-shadow: 0 4px 24px rgba(60,60,120,0.13);
+  animation: popInContact 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.cardAnimated:hover {
+  box-shadow: 0 12px 32px rgba(60,60,120,0.18);
+  transform: scale(1.03) translateY(-4px);
+}
+
+.text {
+  color: #3a3a7c;
+  font-size: 1.18rem;
   line-height: 1.7;
+  font-weight: 500;
 }
 
-a {
+.highlight {
   color: #fc5c7d;
+  font-weight: 700;
+  font-size: 1.1em;
+  margin-top: 18px;
+  display: inline-block;
+}
+
+.link {
+  color: #6a82fb;
   text-decoration: underline;
+  font-weight: 600;
   transition: color 0.2s;
 }
-a:hover {
-  color: #6a82fb;
+.link:hover {
+  color: #fc5c7d;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInContact {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
+}
+@keyframes popInContact {
+  0% { opacity: 0; transform: scale(0.8) translateY(30px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
 } 

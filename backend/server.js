@@ -7,6 +7,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 // const dotenv = require("dotenv");
 const authRoutes = require("./routes/authRoutes");
+const Stripe = require('stripe');
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+const paymentRoutes = require('./routes/paymentRoutes');
 
 // dotenv.config();
 console.log("Loaded MONGO_URI:", process.env.MONGODB_URI); // Debug line
@@ -26,3 +29,4 @@ mongoose
   });
 
 app.use("/api/auth", authRoutes);
+app.use('/api/payment', paymentRoutes);

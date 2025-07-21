@@ -1,39 +1,120 @@
 import styles from "../pages/Courses.module.css";
 import Header from "./Header";
 import Footer from "./Footer";
+import { useState } from "react";
 
 const subjects = [
-  { name: "Web Development", color: "#6a82fb" },
-  { name: "Data Structures", color: "#fc5c7d" },
-  { name: "Algorithms", color: "#43e97b" },
-  { name: "Database Systems", color: "#f7971e" },
-  { name: "Operating Systems", color: "#fd5c63" },
-  { name: "Networking", color: "#11998e" },
-  { name: "Machine Learning", color: "#a770ef" },
-  { name: "Cloud Computing", color: "#f953c6" },
-  { name: "Cyber Security", color: "#30cfd0" },
-  { name: "Mobile App Dev", color: "#f7797d" }
+  { name: "Web Development", price: 499 },
+  { name: "Data Structures", price: 399 },
+  { name: "Algorithms", price: 399 },
+  { name: "Database Systems", price: 349 },
+  { name: "Operating Systems", price: 349 },
+  { name: "Networking", price: 299 },
+  { name: "Machine Learning", price: 599 },
+  { name: "Cloud Computing", price: 549 },
+  { name: "Cyber Security", price: 449 },
+  { name: "Mobile App Dev", price: 499 }
 ];
 
-const Courses = () => (
-  <>
-    <Header />
-    <div className={styles.coursesContainer}>
-      <h1>IT Sector Courses</h1>
-      <div className={styles.cardGrid}>
-        {subjects.map((subj, idx) => (
-          <div
-            key={subj.name}
-            className={styles.card}
-            style={{ background: subj.color }}
-          >
-            <h2>{subj.name}</h2>
-            <button className={styles.buyBtn}>Buy Now</button>
-          </div>
-        ))}
+const RAZORPAY_KEY_ID = "rzp_test_NAqhdTa27x5Avk";
+
+const Courses = () => {
+  const [processingIdx, setProcessingIdx] = useState(null);
+  const [failedIdx, setFailedIdx] = useState(null);
+
+  const handleBuy = async (course, idx) => {
+    setProcessingIdx(idx);
+    setFailedIdx(null);
+    try {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/payment/create-order`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: course.price, currency: "INR" })
+      });
+      const order = await res.json();
+      if (order.id) {
+        const options = {
+          key: RAZORPAY_KEY_ID,
+          amount: order.amount,
+          currency: order.currency,
+          name: "Boora Classes",
+          description: course.name,
+          order_id: order.id,
+          handler: function (response) {
+            alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
+            setProcessingIdx(null);
+          },
+          prefill: {
+            name: "",
+            email: "",
+            contact: "",
+          },
+          theme: {
+            color: "#6a82fb",
+          },
+          modal: {
+            ondismiss: function () {
+              setProcessingIdx(null);
+              setFailedIdx(idx);
+            }
+          }
+        };
+        const rzp = new window.Razorpay(options);
+        rzp.open();
+      } else {
+        window.alert("Failed to create Razorpay order.");
+        setProcessingIdx(null);
+        setFailedIdx(idx);
+      }
+    } catch (err) {
+      window.alert("Payment error: " + err.message);
+      setProcessingIdx(null);
+      setFailedIdx(idx);
+    }
+  };
+
+  return (
+    <>
+      <Header />
+      <div className={styles.coursesContainer}>
+        <h1 style={{ color: '#222255', fontWeight: 700, fontSize: '2.5rem', marginBottom: 32, letterSpacing: 1 }}>IT Sector Courses</h1>
+        <div className={styles.cardGrid}>
+          {subjects.map((subj, idx) => (
+            <div
+              key={subj.name}
+              className={`${styles.card} ${styles.animatedCard}`}
+              style={{ background: '#6a82fb', color: '#fff', boxShadow: '0 8px 32px rgba(60,60,120,0.18)' }}
+            >
+              <h2 style={{ color: '#fff', fontWeight: 700, fontSize: '1.4rem', marginBottom: 10, textShadow: '1px 1px 4px #22225555' }}>{subj.name}</h2>
+              <p style={{ fontWeight: 600, fontSize: '1.2rem', margin: '10px 0', color: '#fff', textShadow: '1px 1px 4px #22225555' }}>Price: ₹{subj.price}</p>
+              <button
+                className={styles.buyBtn}
+                onClick={() => handleBuy(subj, idx)}
+                disabled={processingIdx !== null}
+                style={{
+                  background: processingIdx === idx ? '#fc5c7d' : failedIdx === idx ? '#ff4d4f' : '#fff',
+                  color: processingIdx === idx || failedIdx === idx ? '#fff' : '#222255',
+                  fontWeight: 700,
+                  fontSize: '1.1rem',
+                  boxShadow: '0 2px 8px rgba(60,60,120,0.10)',
+                  transition: 'all 0.2s',
+                  border: 'none',
+                  borderRadius: 8,
+                  padding: '12px 0',
+                  width: '100%',
+                  marginTop: 10,
+                  cursor: processingIdx !== null ? 'not-allowed' : 'pointer',
+                  letterSpacing: 1
+                }}
+              >
+                {processingIdx === idx ? "Processing..." : failedIdx === idx ? "Payment Failed" : "Buy Now"}
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-    <Footer />
-  </>
-);
+      <Footer />
+    </>
+  );
+};
 export default Courses;

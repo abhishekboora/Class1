@@ -1,22 +1,23 @@
 import navStyles from "./NavBar.module.css";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
     navigate("/login");
   };
   return (
     <nav className={navStyles.nav}>
-      <div className={navStyles.navLinks}>
-        <Link to="/home" className={`${navStyles.link} ${location.pathname === "/home" ? navStyles.active : ""}`}>Home</Link>
-        <Link to="/about" className={`${navStyles.link} ${location.pathname === "/about" ? navStyles.active : ""}`}>About</Link>
-        <Link to="/courses" className={`${navStyles.link} ${location.pathname === "/courses" ? navStyles.active : ""}`}>Courses</Link>
-        <Link to="/contact" className={`${navStyles.link} ${location.pathname === "/contact" ? navStyles.active : ""}`}>Contact</Link>
+      <div className={navStyles.centerNav}>
+        <NavLink to="/home" className={({ isActive }) => `${navStyles.link} ${isActive ? navStyles.active : ""}`}>Home</NavLink>
+        <NavLink to="/about" className={({ isActive }) => `${navStyles.link} ${isActive ? navStyles.active : ""}`}>About</NavLink>
+        <NavLink to="/courses" className={({ isActive }) => `${navStyles.link} ${isActive ? navStyles.active : ""}`}>Courses</NavLink>
+        <NavLink to="/contact" className={({ isActive }) => `${navStyles.link} ${isActive ? navStyles.active : ""}`}>Contact</NavLink>
       </div>
-      <button onClick={handleLogout} className={navStyles.logoutBtn}>Logout</button>
+      <span className={navStyles.logoutIcon} onClick={handleLogout} title="Logout" role="button" tabIndex={0}>
+         Logout
+      </span>
     </nav>
   );
 };
