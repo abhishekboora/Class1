@@ -47,7 +47,7 @@ exports.verifyOtp = async (req, res) => {
       return res.status(400).json({ message: "Invalid OTP" });
     }
     // Generate registrationId and password
-    const registrationId = "REG" + Math.floor(100000 + Math.random() * 900000).toString();
+    const registrationId = "" + Math.floor(100000 + Math.random() * 900000).toString();
     const password = Math.random().toString(36).substring(2, 10).toUpperCase();
     user.registrationId = registrationId;
     user.password = password;

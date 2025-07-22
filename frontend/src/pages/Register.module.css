@@ -1,69 +1,76 @@
+/* Register.module.css */
 .registerContainer {
-  max-width: 400px;
+  max-width: 420px;
   margin: 60px auto;
   padding: 36px 32px 28px 32px;
-  background: #fff;
+  background: #ffffff;
   border-radius: 18px;
-  box-shadow: 0 8px 32px rgba(60,60,120,0.13);
-  animation: fadeIn 1s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+body {
+  background: linear-gradient(135deg, #d2f1f6, #a1d6e2, #8bd5c1);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 h2 {
-  color: #6a82fb;
-  font-size: 2rem;
+  text-align: center;
+  font-size: 24px;
+  color: black;
   margin-bottom: 10px;
-  font-weight: 700;
+  font-family: cursive;
+  font-weight: normal;
+}
+
+p {
+  color: #333;
+  font-size: 14px;
+  text-align: center;
 }
 
 input {
   width: 100%;
   padding: 12px 14px;
   margin: 12px 0;
-  border: 1.5px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border 0.2s, box-shadow 0.2s;
+  border: 1px solid #b2d8e2;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
   outline: none;
 }
+
 input:focus {
-  border: 1.5px solid #6a82fb;
-  box-shadow: 0 0 0 2px #6a82fb33;
+  border-color: #26b4c6;
 }
 
 button {
-  width: 100%;
-  padding: 12px 0;
-  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
-  color: #fff;
-  font-size: 1.1rem;
-  font-weight: 600;
+  width: 35%;
+  padding: 12px;
+  margin: 14px 0;
+  background: lightseagreen;
   border: none;
-  border-radius: 8px;
-  margin-top: 10px;
+  border-radius: 15px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
-  box-shadow: 0 2px 8px rgba(60,60,120,0.08);
+  
 }
+
 button:hover {
-  background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
-  transform: translateY(-2px) scale(1.04);
+  background: linear-gradient(to right, #0098db, #005cbf);
 }
 
 a {
-  color: #fc5c7d;
+  color: #007bff;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-a:hover {
-  color: #6a82fb;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+a:hover {
+  text-decoration: underline;
 }
-  

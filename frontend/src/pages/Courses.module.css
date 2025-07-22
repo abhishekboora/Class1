@@ -9,7 +9,7 @@
 }
 
 h1 {
-  color: #3a3a7c;
+  color: white;
   font-size: 2.2rem;
   font-weight: 700;
   margin-bottom: 32px;
@@ -100,4 +100,4 @@ li {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
-} 
+}

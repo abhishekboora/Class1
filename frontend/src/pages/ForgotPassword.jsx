@@ -28,7 +28,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "40px auto", padding: 24, border: "1px solid #ccc", borderRadius: 8 }}>
+    <div style={{ maxWidth: 400, margin: "40px auto", padding: 24, border: "1px solid #ccc", borderRadius: 8, background: "white", }}>
       <h2>Forgot Password</h2>
       <input
         name="registrationId"

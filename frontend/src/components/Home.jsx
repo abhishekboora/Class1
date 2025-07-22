@@ -1,33 +1,54 @@
+import React from "react";
 import styles from "./Home.module.css";
 import Header from "./Header";
 import Footer from "./Footer";
 
 const Home = () => {
   return (
-    <div>
+    <div className={styles.page}>
       <Header />
-      <div className={styles.container}>
-        <h1 className={styles.title}>Welcome to Boora Classes!</h1>
-        <section style={{margin: '32px 0'}}>
-          <h2 style={{color: '#fc5c7d', fontSize: '2rem', marginBottom: 12}}>Making Your Future Bright</h2>
-          <p style={{fontSize: '1.15rem', color: '#444', lineHeight: 1.7}}>
-            At Boora Classes, we are dedicated to empowering students with the knowledge and skills they need to excel in their academic and professional journeys. Our expert faculty, modern teaching methods, and supportive environment ensure that every student has the opportunity to shine.<br/><br/>
-            Whether you are preparing for competitive exams, looking to strengthen your fundamentals, or seeking guidance for your career, Boora Classes is your trusted partner in success. Join us and take the first step towards a brighter future!
+      <main className={styles.heroSection}>
+        <div className={styles.left}>
+          <h1>
+            Welcome <br />
+            <span className={styles.highlight}>To </span>  <br />
+            <span className={styles.future}>Boora Classes</span>
+          </h1>
+          <p>
+            Our e-learning programs have been developed to be a vehicle of delivering multimedia
+            learning solutions for your career.
           </p>
-        </section>
-        <section style={{margin: '32px 0'}}>
-          <h2 style={{color: '#6a82fb', fontSize: '1.7rem', marginBottom: 10}}>Why Choose Boora Classes?</h2>
-          <ul style={{fontSize: '1.1rem', color: '#555', lineHeight: 1.7, paddingLeft: 24}}>
-            <li>Experienced and passionate faculty</li>
-            <li>Comprehensive and up-to-date study material</li>
-            <li>Personalized attention and doubt-solving sessions</li>
-            <li>Regular assessments and progress tracking</li>
-            <li>Supportive and motivating learning environment</li>
-          </ul>
-        </section>
-      </div>
+          <div className={styles.ctaGroup}>
+            <button className={styles.contactBtn}>Contact</button>
+            <div className={styles.stats}>
+              <div><strong>50+</strong><br />Career Courses</div>
+              <div><strong>1M+</strong><br />Our Students</div>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.right}>
+          <img
+            src="https://img.freepik.com/free-photo/young-happy-college-student-with-backpack-books-cheerful-gesture-isolated-orange-background_74952-3761.jpg?w=740"
+            alt="Student"
+            className={styles.heroImg}
+          />
+        </div>
+      </main>
+
+      <section className={styles.coursesSection}>
+        <h2>Browse Top Essential Career Courses</h2>
+        <div className={styles.cardGrid}>
+          <div className={styles.card} style={{ background: "#ff9a9e" }}>UI/UX Design</div>
+          <div className={styles.card} style={{ background: "#fdbb2d" }}>Web Development</div>
+          <div className={styles.card} style={{ background: "#90f7ec" }}>Digital Marketing</div>
+          <div className={styles.card} style={{ background: "#c3cfe2" }}>Practical Learning</div>
+          <div className={styles.browseAll}>→</div>
+        </div>
+      </section>
       <Footer />
     </div>
   );
 };
+
 export default Home;

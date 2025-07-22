@@ -4,16 +4,16 @@ import Footer from "./Footer";
 import { useState } from "react";
 
 const subjects = [
-  { name: "Web Development", price: 499 },
-  { name: "Data Structures", price: 399 },
-  { name: "Algorithms", price: 399 },
-  { name: "Database Systems", price: 349 },
-  { name: "Operating Systems", price: 349 },
-  { name: "Networking", price: 299 },
-  { name: "Machine Learning", price: 599 },
-  { name: "Cloud Computing", price: 549 },
-  { name: "Cyber Security", price: 449 },
-  { name: "Mobile App Dev", price: 499 }
+  { name: "Web Development", price:  100 },
+  { name: "Data Structures", price: 200 },
+  { name: "Algorithms", price: 300 },
+  { name: "Database Systems", price: 400 },
+  { name: "Operating Systems", price: 500 },
+  { name: "Networking", price: 600 },
+  { name: "Machine Learning", price: 699 },
+  { name: "Cloud Computing", price: 749 },
+  { name: "Cyber Security", price: 849 },
+  { name: "Mobile App Dev", price: 999 }
 ];
 
 const RAZORPAY_KEY_ID = "rzp_test_NAqhdTa27x5Avk";

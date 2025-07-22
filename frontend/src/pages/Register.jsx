@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./Register.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
-  const [step, setStep] = useState(1); // 1: email, 2: otp
+  const [step, setStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSendOtp = async () => {
     if (!email) {
-      alert("Please enter your email");
+      toast.warning("Please enter your email");
       return;
     }
     setIsLoading(true);
@@ -23,13 +25,13 @@ const Register = () => {
       });
       const data = await res.json();
       if (res.ok) {
-        alert("OTP sent to your email.");
+        toast.success("OTP sent to your email.");
         setStep(2);
       } else {
-        alert(data.message || "Failed to send OTP");
+        toast.error(data.message || "Failed to send OTP");
       }
     } catch (error) {
-      alert("Network error. Please try again.");
+      toast.error("Network error. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -37,7 +39,7 @@ const Register = () => {
 
   const handleVerifyOtp = async () => {
     if (!otp) {
-      alert("Please enter the OTP");
+      toast.warning("Please enter the OTP");
       return;
     }
     setIsLoading(true);
@@ -49,13 +51,13 @@ const Register = () => {
       });
       const data = await res.json();
       if (res.ok) {
-        alert("Registration successful! Check your email for Registration ID and Password.");
-        navigate('/login');
+        toast.success("Registration successful! Check your email.");
+        setTimeout(() => navigate('/login'), 2000);
       } else {
-        alert(data.message || "OTP verification failed");
+        toast.error(data.message || "OTP verification failed");
       }
     } catch (error) {
-      alert("Network error. Please try again.");
+      toast.error("Network error. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -63,10 +65,12 @@ const Register = () => {
 
   return (
     <div className={styles.registerContainer}>
+      <ToastContainer position="top-center" />
       <h2>Welcome to Boora Classes Registration</h2>
       <p style={{ marginBottom: 20 }}>
-        Please enter your email to register. You will receive an OTP for verification. After successful registration, your Registration ID and Password will be sent to your email.
+        Please enter your email to register. You will receive an OTP for verification.
       </p>
+
       {step === 1 && (
         <>
           <input 
@@ -81,6 +85,7 @@ const Register = () => {
           </button>
         </>
       )}
+
       {step === 2 && (
         <>
           <input 
@@ -94,14 +99,10 @@ const Register = () => {
           </button>
         </>
       )}
+
       <p>You will receive an OTP via email to complete registration.</p>
-      <p>
-        Already registered?{' '}
-        <Link to="/login">Login here</Link>
-      </p>
-      <p>
-        <Link to="/forgot-password">Forgot Password?</Link>
-      </p>
+      <p>Already registered? <Link to="/login">Login here</Link></p>
+      <p><Link to="/forgot-password">Forgot Password?</Link></p>
     </div>
   );
 };
